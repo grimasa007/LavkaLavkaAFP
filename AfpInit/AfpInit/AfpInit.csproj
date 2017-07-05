@@ -38,10 +38,37 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BikBurgerPage.xaml.cs">
+      <DependentUpon>BikBurgerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GusBurger.xaml.cs">
+      <DependentUpon>GusBurger.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IntroPage.xaml.cs">
+      <DependentUpon>IntroPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MarkUpExtensions\EmbeddedImage.cs" />
+    <Compile Include="Menu.xaml.cs">
+      <DependentUpon>Menu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\FoodMenuItem.cs" />
+    <Compile Include="Order.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sandwich.xaml.cs">
+      <DependentUpon>Sandwich.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SoupPage.xaml.cs">
+      <DependentUpon>SoupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Zakaz.xaml.cs">
+      <DependentUpon>Zakaz.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZakazDetail.xaml.cs">
+      <DependentUpon>ZakazDetail.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MainPage.xaml">
@@ -66,6 +93,82 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="IntroPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\lavkaLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Menu.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\burger1200300.png" />
+    <EmbeddedResource Include="Images\burger2200300.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BikBurgerPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\burger1.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\cart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\cart2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="GusBurger.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\burger2.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SoupPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\sup.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Sandwich.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\sand.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Zakaz.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ZakazDetail.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

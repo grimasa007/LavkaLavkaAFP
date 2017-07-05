@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage    Title="{Binding WordCount}"
+                xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                x:Class="AfpInit.Zakaz">
+    <StackLayout>
+    <ListView x:Name="listZakaza">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                            <Label FontAttributes="Bold" Text="{Binding Name}"/>
+                            <StackLayout Orientation="Horizontal">
+                                <Label FontAttributes="Italic" Text="Кол-во: "/>
+                                <Label FontAttributes="Italic" Text="{Binding Quantity}"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <Label Text="{Binding PriceTotal}"/>
+                        <Label Text=" руб. "/>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+        <Button Text="ЗАКАЗАТЬ" BackgroundColor="DarkGreen" TextColor="White" Clicked="Button_Clicked"/>
+    </StackLayout>
+</ContentPage>

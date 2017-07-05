@@ -9,16 +9,13 @@ namespace AfpInit
 {
     public partial class App : Application
     {
+        private static int _orderSum;
+
         public App()
         {
             InitializeComponent();
 
-            MainPage = new AfpInit.MainPage();
-        }
-
-        protected override void OnStart()
-        {
-            // Handle when your app starts
+            MainPage = new NavigationPage (new IntroPage ());
         }
 
         protected override void OnSleep()
