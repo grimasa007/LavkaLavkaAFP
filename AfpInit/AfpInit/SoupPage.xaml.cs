@@ -14,14 +14,18 @@ namespace AfpInit
     {
         private int _soupCounter;
         private AbsoluteLayout _layout;
-        private Label _howMany;
+        private Label _howMany = new Label();
         private Label _itemName = new Label();
         private Button _buttonSubtract;
         private Button _buttonAdd;
-        private Label _total;
+        private Label _total = new Label();
         private Label _name;
 
-        public SoupPage()
+        BikBurgerPage _bp;
+        Sandwich _sand;
+        GusBurger _gb;
+
+        public SoupPage(BikBurgerPage bp, Sandwich sand, GusBurger gb)
         {
             InitializeComponent();
             CreateLayout();
@@ -30,7 +34,9 @@ namespace AfpInit
             SetCheckOut();
             SetItemName();
 
-
+            _bp = bp;
+            _sand = sand;
+            _gb = gb;
         }
 
 
@@ -81,7 +87,7 @@ namespace AfpInit
 
         async void GoToCart()
         {
-            await Navigation.PushAsync(new Zakaz());
+            await Navigation.PushAsync(new Zakaz(_bp, this, _sand, _gb));
         }
 
         void SetCheckOut()
@@ -91,7 +97,7 @@ namespace AfpInit
                                 new Rectangle(0.90, 0.1, 50, 50),
                                 AbsoluteLayoutFlags.PositionProportional);
 
-            _total = new Label();
+            //_total = new Label();
             _total.Text = Order.OrderTotal.ToString();
 
             _total.HorizontalOptions = LayoutOptions.FillAndExpand;
@@ -129,7 +135,7 @@ namespace AfpInit
 
         void SetItemCount()
         {
-            _howMany = new Label();
+            //_howMany = new Label();
 
             _howMany.Text = _soupCounter.ToString();
 
@@ -235,6 +241,19 @@ namespace AfpInit
             {
                 _soupCounter = 0;
             }
+        }
+
+        public static void AllZero(SoupPage item)
+        {
+            if (item != null)
+            {
+                item._total.Text = "";
+                item._howMany.Text = "";
+                item._soupCounter = 0;
+            }
+          
+            Order.CountFo = 0;
+            Order.OrderTotal = 0;
         }
     }
 }

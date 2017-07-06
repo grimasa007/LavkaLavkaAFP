@@ -4,8 +4,8 @@
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 x:Class="AfpInit.ZakazDetail">
     <StackLayout>
-        <Entry Keyboard="Text" Placeholder="Имя"/>
-        <Entry Keyboard="Numeric" Placeholder="Телефон"/>
+        <Entry Keyboard="Text" Placeholder="Имя" TextChanged="Entry_TextChanged_1"/>
+        <Entry Keyboard="Numeric" Placeholder="Телефон" TextChanged="Entry_TextChanged"/>
         <Button Text="ОТПРАВИТЬ ЗАКАЗ" BackgroundColor="DarkGreen" TextColor="White" Clicked="Button_Clicked"/>
     </StackLayout>
 </ContentPage>

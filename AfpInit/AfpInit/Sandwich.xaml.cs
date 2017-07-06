@@ -14,14 +14,18 @@ namespace AfpInit
     {
         private int _sandCounter;
         private AbsoluteLayout _layout;
-        private Label _howMany;
+        private Label _howMany = new Label();
         private Label _itemName = new Label();
         private Button _buttonSubtract;
         private Button _buttonAdd;
-        private Label _total;
+        private Label _total = new Label();
         private Label _name;
 
-        public Sandwich()
+        BikBurgerPage _bp;
+        SoupPage _sp;
+        GusBurger _gb;
+
+        public Sandwich(BikBurgerPage bp, SoupPage sp, GusBurger gb)
         {
             InitializeComponent();
             CreateLayout();
@@ -30,6 +34,9 @@ namespace AfpInit
             SetCheckOut();
             SetItemName();
 
+            _bp = bp;
+            _sp = sp;
+            _gb = gb;
 
         }
 
@@ -81,7 +88,7 @@ namespace AfpInit
 
         async void GoToCart()
         {
-            await Navigation.PushAsync(new Zakaz());
+            await Navigation.PushAsync(new Zakaz(_bp,_sp, this, _gb));
         }
 
         void SetCheckOut()
@@ -91,7 +98,7 @@ namespace AfpInit
                                 new Rectangle(0.90, 0.1, 50, 50),
                                 AbsoluteLayoutFlags.PositionProportional);
 
-            _total = new Label();
+            //_total = new Label();
             _total.Text = Order.OrderTotal.ToString();
 
             _total.HorizontalOptions = LayoutOptions.FillAndExpand;
@@ -129,7 +136,7 @@ namespace AfpInit
 
         void SetItemCount()
         {
-            _howMany = new Label();
+            //
 
             _howMany.Text = _sandCounter.ToString();
 
@@ -245,6 +252,20 @@ namespace AfpInit
 
             _total.Text = "Отправлен";
             _howMany.Text = "0";
+        }
+
+        public static void AllZero(Sandwich item)
+        {
+            if (item != null)
+            {
+                item._total.Text = "";
+                item._howMany.Text = "";
+                item._sandCounter = 0;
+            }
+
+            
+            Order.CountSand = 0;
+            Order.OrderTotal = 0;
         }
     }
 }

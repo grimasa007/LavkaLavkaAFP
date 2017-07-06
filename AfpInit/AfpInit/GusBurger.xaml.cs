@@ -12,14 +12,15 @@ namespace AfpInit
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GusBurger : CarouselPage
     {
+        
 
         private int _gusBurgerCounter;
         private AbsoluteLayout _layout;
-        private Label _howMany;
+        private Label _howMany  = new Label();
         private Label _itemName = new Label();
         private Button _buttonSubtract;
         private Button _buttonAdd;
-        private Label _total;
+        private Label _total = new Label();
         private Label _name;
         private BikBurgerPage _burgerPage;
         private SoupPage _soupPage;
@@ -77,15 +78,20 @@ namespace AfpInit
             contGusBurger.Content = _layout;
             Children.Add(contGusBurger);
 
-            _burgerPage = new BikBurgerPage();
-            Children.Add(_burgerPage);
+            _burgerPage = new BikBurgerPage(_soupPage,_sandPage,this);
+            _soupPage = new SoupPage(_burgerPage, _sandPage, this);
+            _sandPage = new Sandwich(_burgerPage, _soupPage, this);
 
-            _soupPage = new SoupPage();
-            Children.Add(_soupPage);
-
-            _sandPage = new Sandwich();
+            Children.Add(_burgerPage);           
+            Children.Add(_soupPage);           
             Children.Add(_sandPage);
             
+        }
+
+
+        async void GoToCart()
+        {
+            await Navigation.PushAsync(new Zakaz(_burgerPage, _soupPage, _sandPage, this));
         }
 
         protected override void OnCurrentPageChanged()
@@ -134,7 +140,7 @@ namespace AfpInit
                                 new Rectangle(0.90, 0.1, 50, 50),
                                 AbsoluteLayoutFlags.PositionProportional);
 
-            _total = new Label();
+            //_total = new Label();
             _total.Text = Order.OrderTotal.ToString();
 
             _total.HorizontalOptions = LayoutOptions.FillAndExpand;
@@ -155,10 +161,6 @@ namespace AfpInit
             img.GestureRecognizers.Add(tapGestureRecognizer);
         }
 
-        async void GoToCart()
-        {
-            await Navigation.PushAsync(new Zakaz());
-        }
 
         void SetItemName()
         {
@@ -177,7 +179,7 @@ namespace AfpInit
 
         void SetItemCount()
         {
-            _howMany = new Label();
+            
 
             _howMany.Text = _gusBurgerCounter.ToString();
 
@@ -285,6 +287,25 @@ namespace AfpInit
                 _gusBurgerCounter = 0;
                 
             }
+        }
+
+        public void OnDataSent(object source, EventArgs e)
+        {
+            //AllZero();
+        }
+
+        public static void AllZero(GusBurger burger)
+        {
+
+            if (burger != null)
+            {
+                burger._total.Text = "";
+                burger._howMany.Text = "";
+                burger._gusBurgerCounter = 0;
+            }
+
+            Order.CountGus = 0;
+            Order.OrderTotal = 0;
         }
     }
 }

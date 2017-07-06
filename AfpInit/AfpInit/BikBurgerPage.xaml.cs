@@ -13,47 +13,20 @@ namespace AfpInit
     public partial class BikBurgerPage : ContentPage
     {
 
-        //DisplayAlert("В Вашей корзине", _biBurgerCounter.ToString()+ "Бик Бургеров", "Ok");
-        //bikBurgerPic.Source = ImageSource.FromResource("AfpInit.Images.burger1200300.png");
-        //SetTop();
-        //SetLeftBox();
-        //InitHowMany();
-        //SetAddButton();
-        //SetSubtractButton();           
-        //InitMenuItemNameName();
-
-        //void SetTop()
-        //{
-        //    var box = new BoxView { Color = Color.Brown };
-        //    box.Opacity = 0.7;
-        //    _layout.Children.Add(box,
-        //                        new Rectangle(0.5, 0, 1, 0.1),
-        //                        AbsoluteLayoutFlags.All);
-        //}
-
-        //void InitHowMany()
-        //{
-        //    _howMany = new Label();
-        //    _howMany.Text = _biBurgerCounter.ToString();
-        //    _howMany.TextColor = Color.Black;
-        //    _howMany.BackgroundColor = Color.Red;
-        //    _howMany.HorizontalOptions = LayoutOptions.Center;
-        //    _howMany.VerticalOptions = LayoutOptions.Center;
-        //    _layout.Children.Add(_howMany,
-        //                        new Rectangle(0.5, 0.9, 0.2, 0.2),
-        //                        AbsoluteLayoutFlags.All);
-        //}
-
         private int _biBurgerCounter;
         private AbsoluteLayout _layout;
-        private Label _howMany;
+        private Label _howMany = new Label();
         private Label _itemName = new Label();
         private Button _buttonSubtract;
         private Button _buttonAdd;
-        private Label _total;
+        private Label _total = new Label();
         private Label _name;
 
-        public BikBurgerPage()
+        SoupPage _sp;
+        Sandwich _sand;
+        GusBurger _gb;
+
+        public BikBurgerPage(SoupPage sp, Sandwich sand, GusBurger gb)
         {
             InitializeComponent();
             CreateLayout();
@@ -62,7 +35,9 @@ namespace AfpInit
             SetCheckOut();
             SetItemName();
 
-
+            _sp = sp;
+            _sand = sand;
+            _gb = gb;
         }
 
 
@@ -129,7 +104,7 @@ namespace AfpInit
 
         async void GoToCart()
         {
-            await Navigation.PushAsync(new Zakaz());
+            await Navigation.PushAsync(new Zakaz(this, _sp, _sand, _gb));
         }
 
         void SetCheckOut()
@@ -139,7 +114,7 @@ namespace AfpInit
                                 new Rectangle(0.90, 0.1, 50, 50),
                                 AbsoluteLayoutFlags.PositionProportional);
 
-            _total = new Label();
+           // _total = new Label();
             _total.Text = Order.OrderTotal.ToString();
 
             _total.HorizontalOptions = LayoutOptions.FillAndExpand;
@@ -177,7 +152,7 @@ namespace AfpInit
 
         void SetItemCount()
         {
-            _howMany = new Label();
+            //_howMany = new Label();
 
             _howMany.Text = _biBurgerCounter.ToString();
 
@@ -283,6 +258,19 @@ namespace AfpInit
             {
                 _biBurgerCounter = 0;
             }
+        }
+
+        public static void AllZero(BikBurgerPage item)
+        {
+            if (item !=null)
+            {
+                item._total.Text = "";
+                item._howMany.Text = "";
+                item._biBurgerCounter = 0;
+            }
+
+            Order.CountBik = 0;
+            Order.OrderTotal = 0;
         }
     }
 }
